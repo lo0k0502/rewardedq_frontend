@@ -42,95 +42,56 @@ const Login = ({ setUser }) => {
     const [depGrade, setDepGrade] = useState('');
     const [name, setName] = useState('');
 
-    const [idErr, setIdErr] = useState('');
-    const [depGradeErr, setDepGradeErr] = useState('');
-    const [nameErr, setNameErr] = useState('');
-
     const history = useHistory();
 
-    const checkNull = (text, index) => {
-        switch (index) {
-            case 1: {
-                setId(text);
-                setIdErr(text ? '' : '此欄位為必填');
-                break;
-            }
-            case 2: {
-                setDepGrade(text);
-                setDepGradeErr(text ? '' : '此欄位為必填');
-                break;
-            }
-            case 3: {
-                setName(text);
-                setNameErr(text ? '' : '此欄位為必填');
-                break;
-            }
-        }
-    };
-
-    const handleKeyPress = (e) => {
-        if (e.key === 'Enter') handleSubmit();
-    };
-
     const handleSubmit = () => {
-        if (!id || !depGrade || !name) {
-            if (!id) setIdErr('此欄位為必填');
-            if (!depGrade) setDepGradeErr('此欄位為必填');
-            if (!name) setNameErr('此欄位為必填');
-            return;
-        }
-
         setUser({ id, depGrade, name });
         history.push('/questions');
     };
 
     return (
         <div className={classes.root}>
-            <Box className={classes.form}>
+            <form className={classes.form} onSubmit={handleSubmit}>
                 <Typography variant='h3'>有獎徵答</Typography>
                 <TextField 
                     label='學號'
                     autoFocus
                     fullWidth
-                    error={idErr}
-                    helperText={idErr}
+                    required
                     variant='outlined'
                     value={id}
                     className={classes.input}
                     InputProps={{ className: classes.inputback }}
-                    onChange={e => checkNull(e.target.value, 1)}
+                    onChange={e => setId(e.target.value)}
                 />
                 <TextField 
                     label='系級'
                     fullWidth
-                    error={depGradeErr}
-                    helperText={depGradeErr}
+                    required
                     variant='outlined'
                     value={depGrade}
                     className={classes.input}
                     InputProps={{ className: classes.inputback }}
-                    onChange={e => checkNull(e.target.value, 2)}
+                    onChange={e => setDepGrade(e.target.value)}
                 />
                 <TextField 
                     label='姓名'
                     fullWidth
-                    error={nameErr}
-                    helperText={nameErr}
+                    required
                     variant='outlined'
                     value={name}
                     className={classes.input}
                     InputProps={{ className: classes.inputback }}
-                    onChange={e => checkNull(e.target.value, 3)}
-                    onKeyPress={handleKeyPress}
+                    onChange={e => setName(e.target.value)}
                 />
                 <Button
                     variant='contained'
                     style={{ width: 200 }}
-                    onClick={handleSubmit}
+                    type='submit'
                 >
                     開始
                 </Button>
-            </Box>
+            </form>
         </div>
     );
 };
