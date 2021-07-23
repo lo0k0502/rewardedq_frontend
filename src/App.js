@@ -8,7 +8,14 @@ function App() {
   const [user, setUser] = useState(null);
 
   return (
-    <div>
+    <div 
+      style={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        height: '100vh', 
+        backgroundColor: '#fedc3d',
+      }}
+    >
       <Switch>
         <Route path='/' exact render={props => <Login setUser={setUser} />} />
         <Route path='/questions' render={props => user ? <Questions {...props} user={user} /> : <Redirect to='/' />} />

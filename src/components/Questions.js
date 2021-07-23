@@ -25,7 +25,7 @@ const Questions = ({ user }) => {
 
     return (
         <div>
-            <AppBar position='static'>
+            <AppBar position='static' className={classes.navbar}>
                 <Toolbar>
                     <Typography variant='h5' style={{ flexGrow: 1 }}>
                         RewardedQ

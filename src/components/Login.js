@@ -12,6 +12,7 @@ import {
 
 const styles = makeStyles(theme => ({
     root: {
+        flexGrow: 1,
         display: 'flex',
         justifyContent: 'center',
         padding: theme.spacing(5),

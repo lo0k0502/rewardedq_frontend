@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core";
 
 const styles = makeStyles(theme => ({
   navbar: {
+    backgroundColor: 'dodgerblue',
   },
   body: {
     display: 'flex',
@@ -12,7 +13,7 @@ const styles = makeStyles(theme => ({
     width: 500,
     height: 200,
     color: 'white',
-    backgroundColor: 'dodgerblue',
+    backgroundColor: '#ff533d',
     borderRadius: 10,
     padding: theme.spacing(1),
   },
