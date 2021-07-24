@@ -19,6 +19,7 @@ export default {
 </style>
 <style scoped>
 .root {
-  height: 95vh;
+  height: 100vh;
+  margin: -8px;
 }
 </style>

@@ -1,67 +1,71 @@
 <template>
   <div class="root">
-    <ui-form-field class="form">
-      <h1>有獎徵答</h1>
-      <ui-textfield
-        class="input"
-        outlined
-        required
-        v-model="idInput.id"
-        helper-text-id="id"
-      >
-        學號
-      </ui-textfield>
-      <ui-textfield-helper
-        class="inputhelper"
-        id="id"
-        :visible="idInput.error"
-        valid-msg=true
-      >
-        請填寫此欄位
-      </ui-textfield-helper>
-      <ui-textfield
-        class="input"
-        outlined
-        required
-        v-model="depGradeInput.depGrade"
-        helper-text-id="depGrade"
-      >
-        系級
-      </ui-textfield>
-      <ui-textfield-helper
-        class="inputhelper"
-        id="depGrade"
-        :visible="depGradeInput.error"
-        valid-msg=true
-      >
-        請填寫此欄位
-      </ui-textfield-helper>
-      <ui-textfield
-        class="input"
-        outlined
-        required
-        v-model="nameInput.name"
-        helper-text-id="name"
-      >
-        姓名
-      </ui-textfield>
-      <ui-textfield-helper
-        class="inputhelper"
-        id="name"
-        :visible="nameInput.error"
-        valid-msg=true
-      >
-        請填寫此欄位
-      </ui-textfield-helper>
-      <ui-button
-        class="btn"
-        raised
-        type="submit"
-        @click="handleSubmit()"
-      >
-        開始
-      </ui-button>
-    </ui-form-field>
+    <ui-form>
+      <ui-form-field class="form">
+        <h1>有獎徵答</h1>
+        <ui-divider></ui-divider>
+        <ui-textfield
+          class="input"
+          outlined
+          required
+          v-model="idInput.id"
+          helper-text-id="id"
+        >
+          學號
+        </ui-textfield>
+        <ui-textfield-helper
+          class="inputhelper"
+          id="id"
+          :v-if="idInput.error"
+          valid-msg=true
+        >
+          請填寫此欄位
+        </ui-textfield-helper>
+        <ui-textfield
+          class="input"
+          outlined
+          required
+          v-model="depGradeInput.depGrade"
+          helper-text-id="depGrade"
+        >
+          系級
+        </ui-textfield>
+        <ui-textfield-helper
+          class="inputhelper"
+          id="depGrade"
+          :v-if="depGradeInput.error"
+          valid-msg=true
+        >
+          請填寫此欄位
+        </ui-textfield-helper>
+        <ui-textfield
+          class="input"
+          outlined
+          required
+          v-model="nameInput.name"
+          helper-text-id="name"
+          @enter="handleSubmit()"
+        >
+          姓名
+        </ui-textfield>
+        <ui-textfield-helper
+          class="inputhelper"
+          id="name"
+          :v-if="nameInput.error"
+          valid-msg=true
+        >
+          請填寫此欄位
+        </ui-textfield-helper>
+        <ui-button
+          class="btn"
+          raised
+          type="submit"
+          @click="handleSubmit()"
+        >
+          開始
+        </ui-button>
+      </ui-form-field>
+    </ui-form>
   </div>
 </template>
 
@@ -108,30 +112,27 @@ export default {
 }
 .form {
   width: 500px;
-  height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background-color: #01abaa;
+  background-color: #00a03e;
   box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, .3);
   border-radius: 20px;
-  margin-top: 50px;
+  margin-block: 50px;
   margin-inline: 30px;
 }
 .form h1 {
-  margin-bottom: 0px;
   color: white;
 }
 .input {
   background-color: rgb(255, 255, 255, 0.5);
   border-radius: 5px;
-}
-.inputhelper {
-  margin-top: -30px;
+  margin-top: 20px;
+  margin-inline: 100px;
 }
 .btn {
-  background-color: #0b856e;
+  background-color: #00c267;
   font-size: 16px;
   font-weight: bold;
   font-style: italic;
