@@ -3,7 +3,7 @@
     <ui-form class="formcontainer">
       <ui-form-field class="form">
         <h1>有獎徵答</h1>
-        <ui-divider></ui-divider>
+        <ui-divider />
         <ui-textfield
           class="input"
           outlined

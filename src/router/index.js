@@ -5,7 +5,7 @@ const routes = [
   {
     path: '/',
     name: 'Login',
-    component: () => import('../views/Login')
+    component: () => import('../views/Login'),
   },
   {
     path: '/questions',
@@ -26,8 +26,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (!(from.name === 'Login' && to.name === 'Questions')) setUser({ id: '', depGrade: '', name: '' });
-  if (to.name === 'Questions' && !user.value.id) next('/');
-    else next();
+  (to.name === 'Questions' && !user.value.id) ? next('/') : next();
 });
 
 export default router;

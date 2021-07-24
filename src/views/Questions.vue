@@ -1,6 +1,7 @@
 <template>
   <div class="root">
     <ui-top-app-bar
+      contentSelector=".root"
       class="navbar"
     >
       Questions{{ user.id }}
@@ -12,6 +13,7 @@
       <ui-form class="form">
         <ui-form-field class="choice" v-for="(ch, key, index) in choices" :key="key">
           <ui-radio 
+            class="radio"
             :input-id="index"
             :value="ch" 
             :model-value="choice"

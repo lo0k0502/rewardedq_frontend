@@ -1,6 +1,5 @@
 <template>
-  <router-view class="root">
-  </router-view>
+  <router-view class="root"></router-view>
 </template>
 
 <script>
@@ -17,6 +16,7 @@ export default {
   color: #2c3e50;
 }
 </style>
+
 <style scoped>
 .root {
   height: 100vh;
