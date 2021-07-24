@@ -1,6 +1,6 @@
 <template>
-  <div>
-      404 NOT FOUND
+  <div class="root">
+    404 NOT FOUND
   </div>
 </template>
 
@@ -10,6 +10,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.root {
+  text-align: center;
+}
 </style>

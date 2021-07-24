@@ -1,28 +1,36 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Login from '../views/Login'
-import NOTFOUND from '../views/NOTFOUND'
+import { user, setUser } from '../main';
 
 const routes = [
   {
     path: '/',
     name: 'Login',
-    component: Login
+    component: () => import('../views/Login')
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About')
+    path: '/questions',
+    name: 'Questions',
+    component: () => import('../views/Questions'),
+    meta: {
+      auth: true,
+    },
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'NOTFOUND',
-    component: NOTFOUND,
-  }
-]
+    component: () => import('../views/NOTFOUND'),
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  if (!(from.name === 'Login' && to.name === 'Questions')) setUser({ id: '', depGrade: '', name: '' });
+  if (to.name === 'Questions' && !user.value.id) next('/');
+    else next();
+});
 
 export default router
