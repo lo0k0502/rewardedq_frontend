@@ -1,6 +1,6 @@
 <template>
   <div class="root">
-    <ui-form>
+    <ui-form class="formcontainer">
       <ui-form-field class="form">
         <h1>有獎徵答</h1>
         <ui-divider></ui-divider>
@@ -110,8 +110,16 @@ export default {
   display: flex;
   justify-content: center;
 }
+.formcontainer {
+  max-width: 500px;
+  min-width: 300px;
+  min-height: 400px;
+  display: flex;
+  margin-block: 50px;
+  margin-inline: 30px;
+}
 .form {
-  width: 500px;
+  max-height: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -119,8 +127,6 @@ export default {
   background-color: #00a03e;
   box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, .3);
   border-radius: 20px;
-  margin-block: 50px;
-  margin-inline: 30px;
 }
 .form h1 {
   color: white;
@@ -129,7 +135,7 @@ export default {
   background-color: rgb(255, 255, 255, 0.5);
   border-radius: 5px;
   margin-top: 20px;
-  margin-inline: 100px;
+  margin-inline: 50px;
 }
 .btn {
   background-color: #00c267;

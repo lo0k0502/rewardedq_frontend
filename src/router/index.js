@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 import { user, setUser } from '../main';
 
 const routes = [
@@ -11,9 +11,6 @@ const routes = [
     path: '/questions',
     name: 'Questions',
     component: () => import('../views/Questions'),
-    meta: {
-      auth: true,
-    },
   },
   {
     path: '/:pathMatch(.*)*',
@@ -24,8 +21,8 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
 router.beforeEach((to, from, next) => {
   if (!(from.name === 'Login' && to.name === 'Questions')) setUser({ id: '', depGrade: '', name: '' });
@@ -33,4 +30,4 @@ router.beforeEach((to, from, next) => {
     else next();
 });
 
-export default router
+export default router;

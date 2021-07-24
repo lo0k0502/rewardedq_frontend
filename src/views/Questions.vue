@@ -3,36 +3,53 @@
     <ui-top-app-bar
       class="navbar"
     >
-    Questions{{ user.id }}{{ answer }}
+      Questions{{ user.id }}
     </ui-top-app-bar>
-    <ui-form class="form">
-        <h1>題目: 請選擇A</h1>
-        <ui-divider></ui-divider>
-        <ui-form-field class="answers">
-          <ui-radio input-id="a" name="answer" v-model="answer"></ui-radio>
-          <label for="a">A</label>
-          <ui-radio input-id="b" name="answer" v-model="answer"></ui-radio>
-          <label for="b">B</label>
-          <ui-radio input-id="c" name="answer" v-model="answer"></ui-radio>
-          <label for="c">C</label>
-          <ui-radio input-id="d" name="answer" v-model="answer"></ui-radio>
-          <label for="d">D</label>
+
+    <ui-card class="card">
+      <h1>題目: 請選擇A</h1>
+      <ui-divider></ui-divider>
+      <ui-form class="form">
+        <ui-form-field class="choice" v-for="(ch, key, index) in choices" :key="key">
+          <ui-radio 
+            :input-id="index"
+            :value="ch" 
+            :model-value="choice"
+            @update:modelValue="balmUI.onChange('choice', ch, handleOnChange(ch))"
+          ></ui-radio>
+          <label class="optionlabel" :for="index">{{ ch }}</label>
         </ui-form-field>
-    </ui-form>
+      </ui-form>
+      <ui-alert 
+        state="error"
+        v-if="errMsg"
+      >{{ errMsg }}</ui-alert>
+    </ui-card>
   </div>
 </template>
 
 <script>
+import { useEvent } from 'balm-ui';
 import { user } from '../main';
 
 export default {
   name: 'Questions',
-  data: () => {
+  data () {
     return {
+      balmUI: useEvent(),
       user,
-      answer,
+      answer: 'A',
+      choices: ['A', 'B', 'C', 'D'],
+      choice: '',
+      errMsg: '',
     };
   },
+  methods: {
+    handleOnChange (ch) {
+      if (ch !== this.answer) this.errMsg = '答案錯誤';
+        else this.errMsg = '';
+    },
+  }
 };
 </script>
 
@@ -46,31 +63,33 @@ export default {
   position: absolute;
   background-color: #ffa200;
 }
-.form {
+.card {
   width: 500px;
-  height: 200px;
+  min-width: 300px;
+  max-height: 500px;
+  min-height: 400px;
+  margin: 100px;
+  background-color: #5CF2E8;
+  border-radius: 20px;
+  box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, .3);
+  padding: 20px;
+}
+.card h1 {
+  text-align: center;
+  color: white;
+  margin: 0px;
+}
+.form {
+  max-width: 400px;
+  min-width: none;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  background-color: #5CF2E8;
-  box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, .3);
-  border-radius: 20px;
-  margin-block: 50px;
-  margin-top: 100px;
-  margin-bottom: 30px;
+  margin-block: 30px;
 }
-.form h1 {
-  color: white;
+.choice {
+  word-wrap: break-word;
 }
-.answers {
-  width: 500px;
-  flex-grow: 1;
-  display: flex;
-  justify-content: space-around;
-  color: black;
-}
-.answers label {
-  margin-left: -80px;
+.optionlabel {
+  max-width: 400px;
 }
 </style>

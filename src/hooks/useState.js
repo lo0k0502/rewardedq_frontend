@@ -7,4 +7,4 @@ export function useState(initialState) {
   };
   
   return [readonly(state), setState];
-}
+};
