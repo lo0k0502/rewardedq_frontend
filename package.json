@@ -1,21 +1,27 @@
 {
-  "name": "rewardedqvue",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "start": "vue-cli-service serve",
-    "build": "vue-cli-service build"
-  },
-  "dependencies": {
-    "balm-ui": "^9.32.0",
-    "core-js": "^3.6.5",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0"
-  }
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production",
+        "start": "php artisan serve"
+    },
+    "dependencies": {
+        "balm-ui": "^9.32.0",
+        "core-js": "3.6.5",
+        "vue": "^3.1.5",
+        "vue-router": "^4.0.10"
+    },
+    "devDependencies": {
+        "@vue/compiler-sfc": "^3.1.5",
+        "axios": "^0.21",
+        "laravel-mix": "^6.0.6",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14",
+        "vue-loader": "^16.3.3"
+    }
 }
