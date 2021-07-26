@@ -1,44 +1,16 @@
 <template>
   <div class="root">
-    <ui-top-app-bar
-      contentSelector=".root"
-      class="navbar"
-    >
-      Questions{{ user.id }}
-    </ui-top-app-bar>
-
-    <ui-card class="card">
-      <h1>題目: 請選擇A</h1>
-      <ui-divider></ui-divider>
-      <ui-form class="form">
-        <ui-form-field class="choice" v-for="(ch, key, index) in choices" :key="key">
-          <ui-radio 
-            class="radio"
-            :input-id="index"
-            :value="ch" 
-            :model-value="choice"
-            @update:modelValue="balmUI.onChange('choice', ch, handleOnChange(ch))"
-          ></ui-radio>
-          <label class="optionlabel" :for="index">{{ ch }}</label>
-        </ui-form-field>
-      </ui-form>
-      <ui-alert 
-        state="error"
-        v-if="errMsg"
-      >{{ errMsg }}</ui-alert>
-    </ui-card>
+    questions{{ user.id }}{{ user.depGrade }}{{ user.name }}
   </div>
 </template>
 
 <script>
-import { useEvent } from 'balm-ui';
 import { user } from '../app';
 
 export default {
   name: 'Questions',
   data () {
     return {
-      balmUI: useEvent(),
       user,
       answer: 'A',
       choices: ['A', 'B', 'C', 'D'],

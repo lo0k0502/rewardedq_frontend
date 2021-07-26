@@ -8,17 +8,24 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production",
-        "start": "php artisan serve"
+        "start": "php artisan serve",
+        "open": "php artisan serve --host 0.0.0.0",
+        "cy": "yarn run cypress open"
     },
     "dependencies": {
-        "balm-ui": "^9.32.0",
         "core-js": "3.6.5",
+        "primeicons": "^4.1.0",
+        "primevue": "^3.5.1",
         "vue": "^3.1.5",
         "vue-router": "^4.0.10"
     },
     "devDependencies": {
+        "@cypress/vue": "^3.0.0-beta.3",
+        "@cypress/webpack-dev-server": "^1.4.0",
+        "@vue/cli-service": "^5.0.0-beta.2",
         "@vue/compiler-sfc": "^3.1.5",
         "axios": "^0.21",
+        "cypress": "^8.0.0",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",

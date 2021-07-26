@@ -1,71 +1,61 @@
 <template>
   <div class="root">
-    <ui-form class="formcontainer">
-      <ui-form-field class="form">
-        <h1>有獎徵答</h1>
-        <ui-divider />
-        <ui-textfield
-          class="input"
-          outlined
-          required
-          v-model="idInput.id"
-          helper-text-id="id"
-        >
-          學號
-        </ui-textfield>
-        <ui-textfield-helper
-          class="inputhelper"
-          id="id"
-          :v-if="idInput.error"
-          valid-msg=true
-        >
-          請填寫此欄位
-        </ui-textfield-helper>
-        <ui-textfield
-          class="input"
-          outlined
-          required
-          v-model="depGradeInput.depGrade"
-          helper-text-id="depGrade"
-        >
-          系級
-        </ui-textfield>
-        <ui-textfield-helper
-          class="inputhelper"
-          id="depGrade"
-          :v-if="depGradeInput.error"
-          valid-msg=true
-        >
-          請填寫此欄位
-        </ui-textfield-helper>
-        <ui-textfield
-          class="input"
-          outlined
-          required
-          v-model="nameInput.name"
-          helper-text-id="name"
-          @enter="handleSubmit()"
-        >
-          姓名
-        </ui-textfield>
-        <ui-textfield-helper
-          class="inputhelper"
-          id="name"
-          :v-if="nameInput.error"
-          valid-msg=true
-        >
-          請填寫此欄位
-        </ui-textfield-helper>
-        <ui-button
+    <div class="formcontainer">
+      <h1>title</h1>
+      <form class="form" @submit.prevent="handleSubmit">
+        <div>
+          <span class="p-float-label p-input-icon-left inputspan">
+            <i class="pi pi-id-card" />
+            <InputText 
+              id="idInput" 
+              type="text" 
+              v-model="idInput.id" 
+              @change="idCheck"
+              aria-describedby="idErr"
+              :class="['p-inputtext-lg input', { 'p-invalid': idInput.errMsg }]"
+            />
+            <label for="idInput">學號</label>
+          </span>
+        </div>
+        <small id="idErr" class="p-error helpertext">{{ idInput.errMsg }}</small>
+        <div>
+          <span class="p-float-label p-input-icon-left inputspan">
+            <i class="pi pi-book" />
+            <InputText 
+              id="depGradeInput" 
+              type="text" 
+              v-model="depGradeInput.depGrade"  
+              @change="depGradeCheck"
+              aria-describedby="depErr"
+              :class="['p-inputtext-lg input', { 'p-invalid': depGradeInput.errMsg }]"
+            />
+            <label for="depGradeInput">系級</label>
+          </span>
+        </div>
+        <small id="depErr" class="p-error helpertext">{{ depGradeInput.errMsg }}</small>
+        <div>
+          <span class="p-float-label p-input-icon-left inputspan">
+            <i class="pi pi-user" />
+            <InputText 
+              id="nameInput" 
+              type="text" 
+              v-model="nameInput.name" 
+              @change="nameCheck"
+              aria-describedby="nameErr"
+              :class="['p-inputtext-lg input', { 'p-invalid': nameInput.errMsg }]"
+            />
+            <label for="nameInput">姓名</label>
+          </span>
+        </div>
+        <small id="nameErr" class="p-error helpertext">{{ nameInput.errMsg }}</small>
+        <Button 
+          id="submitbtn"
           class="btn"
-          raised
-          type="submit"
-          @click="handleSubmit()"
-        >
-          開始
-        </ui-button>
-      </ui-form-field>
-    </ui-form>
+          type="submit" 
+          label="開始" 
+        />
+      </form>
+    </div>
   </div>
 </template>
 
@@ -78,22 +68,43 @@ export default {
     return {
       idInput: {
         id: '',
-        error: false,
+        errMsg: '',
       },
       depGradeInput: {
         depGrade: '',
-        error: false,
+        errMsg: '',
       },
       nameInput: {
         name: '',
-        error: false,
+        errMsg: '',
       },
       user,
       setUser,
     };
   },
   methods: {
+    idCheck () {
+      this.idInput.id === '' ? this.idInput.errMsg = '請填寫此欄位' : '';
+    },
+    depGradeCheck () {
+      this.depGradeInput.depGrade === '' ? this.depGradeInput.errMsg = '請填寫此欄位' : '';
+    },
+    nameCheck () {
+      this.nameInput.name === '' ? this.nameInput.errMsg = '請填寫此欄位' : '';
+    },
     handleSubmit () {
+      if (!this.idInput.id
+        || !this.depGradeInput.depGrade
+        || !this.nameInput.name) {
+        if (!this.idInput.id) this.idInput.errMsg = '請填寫此欄位';
+        if (!this.depGradeInput.depGrade) this.depGradeInput.errMsg = '請填寫此欄位';
+        if (!this.nameInput.name) this.nameInput.errMsg = '請填寫此欄位';
+        return;
+      }
+      this.idInput.errMsg = '';
+      this.depGradeInput.errMsg = '';
+      this.nameInput.errMsg = '';
+
       setUser({ 
         id: this.idInput.id,
         depGrade: this.depGradeInput.depGrade,
@@ -109,41 +120,67 @@ export default {
 .root {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
+  background-color: cornflowerblue;
+  padding-block: 50px;
+  overflow: auto;
 }
 .formcontainer {
-  max-width: 500px;
+  max-width: 600px;
   min-width: 300px;
-  min-height: 400px;
-  display: flex;
-  margin-block: 50px;
-  margin-inline: 30px;
-}
-.form {
-  max-height: 600px;
+  max-height: 550px;
+  min-height: 500px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: space-around;
-  background-color: #00a03e;
+  background-color: white;
   box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, .3);
   border-radius: 20px;
+  padding: 20px;
+  padding-bottom: 50px;
+  font-size: 20px;
+  font-style: italic;
 }
-.form h1 {
-  color: white;
+@media (max-width: 800px) {
+  .formcontainer {
+    max-width: 75%;
+  }
+}
+.form {
+  max-height: 75%;
+  max-width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: cadetblue;
+  border-radius: 20px;
+  padding: 20px;
 }
 .input {
+  width: 95%;
   background-color: rgb(255, 255, 255, 0.5);
-  border-radius: 5px;
+  /* border-width: 0px; */
+}
+.inputspan {
   margin-top: 20px;
-  margin-inline: 50px;
+  margin-left: 20px;
+}
+.helpertext {
+  margin: 0px;
+  padding: 0px;
+  font-size: 14px;
 }
 .btn {
-  background-color: #00c267;
-  font-size: 16px;
-  font-weight: bold;
-  font-style: italic;
-  margin-bottom: 30px;
-  padding-block: 20px;
-  padding-inline: 50px;
+  width: 200px;
+  color: inherit;
+  border-width: 0px;
+  font-size: inherit;
+  font-style: inherit;
+  margin-top: 20px;
+}
+.btn:hover {
+  background-color: var(--teal-700);
 }
 </style>

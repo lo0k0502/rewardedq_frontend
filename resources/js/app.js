@@ -2,10 +2,12 @@ require('./bootstrap');
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-import BalmUI from 'balm-ui';
-import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
-import 'balm-ui/dist/balm-ui.css';
 import { useState } from './hooks/useState';
+
+import PrimeVue from 'primevue/config';
+import Button from 'primevue/button';
+import InputText from 'primevue/inputtext';
+import './styles';
 
 export const [user, setUser] = useState({
     id: '',
@@ -15,6 +17,7 @@ export const [user, setUser] = useState({
 
 createApp(App)
     .use(router)
-    .use(BalmUI)
-    .use(BalmUIPlus)
+    .use(PrimeVue, { ripple: true })
+    .component('Button', Button)
+    .component('InputText', InputText)
     .mount('#app');
