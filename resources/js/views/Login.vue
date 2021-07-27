@@ -84,13 +84,14 @@ export default {
   },
   methods: {
     idCheck () {
-      this.idInput.id === '' ? this.idInput.errMsg = '請填寫此欄位' : '';
+      console.log('checking')
+      this.idInput.errMsg = this.idInput.id === '' ? '請填寫此欄位' : '';
     },
     depGradeCheck () {
-      this.depGradeInput.depGrade === '' ? this.depGradeInput.errMsg = '請填寫此欄位' : '';
+      this.depGradeInput.errMsg = this.depGradeInput.depGrade === '' ? '請填寫此欄位' : '';
     },
     nameCheck () {
-      this.nameInput.name === '' ? this.nameInput.errMsg = '請填寫此欄位' : '';
+      this.nameInput.errMsg = this.nameInput.name === '' ? '請填寫此欄位' : '';
     },
     handleSubmit () {
       if (!this.idInput.id
@@ -164,7 +165,7 @@ export default {
   /* border-width: 0px; */
 }
 .inputspan {
-  margin-top: 20px;
+  margin-top: 30px;
   margin-left: 20px;
 }
 .helpertext {

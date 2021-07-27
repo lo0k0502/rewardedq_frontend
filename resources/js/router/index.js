@@ -2,8 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { user, setUser } from '../app';
 
 const routes = [
+  { path: '/', redirect: '/login', },
   {
-    path: '/',
+    path: '/login',
     name: 'Login',
     component: () => import('../views/Login'),
   },
@@ -25,8 +26,10 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (!(from.name === 'Login' && to.name === 'Questions')) setUser({ id: '', depGrade: '', name: '' });
-  (to.name === 'Questions' && !user.value.id) ? next('/') : next();
+  if (!((from.name === 'Login' && to.name === 'Questions') || (from.name === 'Questions' && to.name === 'Login'))) 
+    setUser({ id: '', depGrade: '', name: '' });
+  (to.name === 'Questions' && !user.value.id) ? next('/login') : next();
+  if (to.path === '/') next('/login');
 });
 
 export default router;

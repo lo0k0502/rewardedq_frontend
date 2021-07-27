@@ -1,6 +1,43 @@
 <template>
+  <Toolbar class="navbar">
+    <template #left>
+      <h2>Questions</h2>
+    </template>
+    <template #right>
+      <h4 class="topbarright">學號: {{ user.id }}</h4>
+      <h4 class="topbarright">系級: {{ user.depGrade }}</h4>
+      <h4 class="topbarright">姓名: {{ user.name }}</h4>
+    </template>
+  </Toolbar>
+  <Toast position="bottom-left" />
   <div class="root">
-    questions{{ user.id }}{{ user.depGrade }}{{ user.name }}
+    <Card class="card">
+      <template #title>
+        <h3><i class="pi pi-question-circle titleicon" />題目: 請選擇A</h3>
+      </template>
+      <template #content>
+        <div class="radbtns">
+          <div 
+            v-for="option of choices" 
+            :key="option" 
+            class="p-field-radiobutton"
+          >
+              <RadioButton 
+                :id="option" 
+                :name="option"
+                :value="option" 
+                v-model="choice" 
+                @change="check" 
+                class="option"
+              />
+              <label :for="option">{{ option }}</label>
+          </div>
+        </div>
+      </template>
+      <template #footer>
+        <Message severity="info">結果將會即時顯示在左下方</Message>
+      </template>
+    </Card>
   </div>
 </template>
 
@@ -19,51 +56,80 @@ export default {
     };
   },
   methods: {
-    handleOnChange (ch) {
-      if (ch !== this.answer) this.errMsg = '答案錯誤';
-        else this.errMsg = '';
-    },
+    check () {
+      this.$toast.add(this.choice === this.answer ? 
+        { severity: 'success', summary: '正確答案!', life: 1000 } : 
+        { severity: 'error', summary: '答案錯誤!', life: 1000 }
+      );
+    }
   }
 };
 </script>
 
 <style scoped>
-.root {
-  display: flex;
-  justify-content: center;
-  margin: -8px;
+h2 {
+  margin: 0px;
 }
 .navbar {
-  position: absolute;
+  height: 60px;
+  width: auto;
+  display: flex;
+  align-items: center;
+  color: white;
   background-color: #ffa200;
+  border-radius: 0px;
+  border-width: 0px;
+  margin: -8px;
+}
+.topbarright {
+  margin: 0px;
+  margin-left: 20px;
+}
+.root {
+  height: calc(100vh - 52px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-block: 80px;
+  margin: -8px;
 }
 .card {
   width: 500px;
   min-width: 300px;
   max-height: 500px;
   min-height: 400px;
-  margin: 100px;
-  background-color: #5CF2E8;
+  display: flex;
+  justify-content: center;
+  color: white;
+  background: linear-gradient(to right, #16c0b0, #84cf6a);
   border-radius: 20px;
   box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, .3);
-  padding: 20px;
+  padding: 10px;
 }
-.card h1 {
+.card h3 {
   text-align: center;
   color: white;
   margin: 0px;
 }
-.form {
-  max-width: 400px;
-  min-width: none;
+.titleicon {
+  font-size: inherit;
+  margin-right: 10px;
+}
+.divider {
+  border-width: 10px;
+  z-index: 1000;
+}
+.radbtns {
+  width: 50%;
+  height: 200px;
   display: flex;
   flex-direction: column;
-  margin-block: 30px;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-inline: 50px;
+  border-width: 20px;
 }
-.choice {
-  word-wrap: break-word;
-}
-.optionlabel {
-  max-width: 400px;
+.option {
+  margin-inline: 10px;
 }
 </style>
