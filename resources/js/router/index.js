@@ -27,8 +27,8 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (!((from.name === 'Login' && to.name === 'Questions') || (from.name === 'Questions' && to.name === 'Login'))) 
-    setUser({ id: '', depGrade: '', name: '' });
-  (to.name === 'Questions' && !user.value.id) ? next('/login') : next();
+    setUser({ name: '', stuid: '', depGrade: '' });
+  (to.name === 'Questions' && !user.value.name) ? next('/login') : next();
   if (to.path === '/') next('/login');
 });
 

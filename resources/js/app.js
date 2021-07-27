@@ -15,12 +15,13 @@ import RadioButton from 'primevue/radiobutton';
 import InlineMessage from 'primevue/inlinemessage';
 import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
+import Paginator from 'primevue/paginator';
 import './styles';
 
 export const [user, setUser] = useState({
-    id: '',
-    depGrade: '',
     name: '',
+    stuid: '',
+    depGrade: '',
 });
 
 createApp(App)
@@ -36,4 +37,5 @@ createApp(App)
     .component('RadioButton', RadioButton)
     .component('InlineMessage', InlineMessage)
     .component('Toast', Toast)
+    .component('Paginator', Paginator)
     .mount('#app');

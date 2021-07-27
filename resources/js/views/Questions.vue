@@ -4,16 +4,16 @@
       <h2>Questions</h2>
     </template>
     <template #right>
-      <h4 class="topbarright">學號: {{ user.id }}</h4>
-      <h4 class="topbarright">系級: {{ user.depGrade }}</h4>
       <h4 class="topbarright">姓名: {{ user.name }}</h4>
+      <h4 class="topbarright">學號: {{ user.stuid }}</h4>
+      <h4 class="topbarright">系級: {{ user.depGrade }}</h4>
     </template>
   </Toolbar>
   <Toast position="bottom-left" />
   <div class="root">
     <Card class="card">
       <template #title>
-        <h3><i class="pi pi-question-circle titleicon" />題目: 請選擇A</h3>
+        <h3><i class="pi pi-question-circle titleicon" />題目: {{ questions[curQues] }}</h3>
       </template>
       <template #content>
         <div class="radbtns">
@@ -35,7 +35,11 @@
         </div>
       </template>
       <template #footer>
-        <Message severity="info">結果將會即時顯示在左下方</Message>
+        <Button 
+          id="nextquesbtn"
+          class="nextquesbtn"
+          label="下一題"
+        />
       </template>
     </Card>
   </div>
@@ -49,6 +53,8 @@ export default {
   data () {
     return {
       user,
+      questions: ['請選擇A', '請選擇B', '請選擇C', '請選擇D'],
+      curQues: 0,
       answer: 'A',
       choices: ['A', 'B', 'C', 'D'],
       choice: '',
@@ -61,7 +67,10 @@ export default {
         { severity: 'success', summary: '正確答案!', life: 1000 } : 
         { severity: 'error', summary: '答案錯誤!', life: 1000 }
       );
-    }
+    },
+    onPageChange (event) {
+      this.curQues = event.page;
+    },
   }
 };
 </script>
@@ -76,7 +85,8 @@ h2 {
   display: flex;
   align-items: center;
   color: white;
-  background-color: #ffa200;
+  /* background: linear-gradient(to right, #16c0b0, #84cf6a); */
+  background-color: #38618f;
   border-radius: 0px;
   border-width: 0px;
   margin: -8px;
@@ -88,23 +98,36 @@ h2 {
 .root {
   height: calc(100vh - 52px);
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-block: 80px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-block: 50px;
   margin: -8px;
+  background-color: #c7c5b8;
+  overflow: auto;
+}
+.paginator {
+  color: yellow;
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 0px;
 }
 .card {
-  width: 500px;
+  width: 600px;
   min-width: 300px;
-  max-height: 500px;
-  min-height: 400px;
+  max-height: 550px;
+  min-height: 500px;
   display: flex;
   justify-content: center;
   color: white;
-  background: linear-gradient(to right, #16c0b0, #84cf6a);
+  background-color: #fd9735;
   border-radius: 20px;
   box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, .3);
-  padding: 10px;
+  padding: 0px;
+}
+@media (max-width: 800px) {
+  .card {
+    max-width: 75%;
+  }
 }
 .card h3 {
   text-align: center;
@@ -121,7 +144,7 @@ h2 {
 }
 .radbtns {
   width: 50%;
-  height: 200px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -131,5 +154,17 @@ h2 {
 }
 .option {
   margin-inline: 10px;
+}
+.nextquesbtn {
+  width: 200px;
+  border-width: 0px;
+  font-size: inherit;
+  font-style: inherit;
+  margin-top: 20px;
+  background-color: rgba(255, 103, 69);
+}
+.nextquesbtn:hover {
+  border-width: 0px;
+  background-color: rgba(255, 63, 29);
 }
 </style>

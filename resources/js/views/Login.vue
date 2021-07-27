@@ -5,19 +5,34 @@
       <form class="form" @submit.prevent="handleSubmit">
         <div>
           <span class="p-float-label p-input-icon-left inputspan">
-            <i class="pi pi-id-card" />
+            <i class="pi pi-user" />
             <InputText 
-              id="idInput" 
+              id="nameInput" 
               type="text" 
-              v-model="idInput.id" 
-              @change="idCheck"
-              aria-describedby="idErr"
-              :class="['p-inputtext-lg input', { 'p-invalid': idInput.errMsg }]"
+              v-model="nameInput.name" 
+              @change="nameCheck"
+              aria-describedby="nameErr"
+              :class="['p-inputtext-lg input', { 'p-invalid': nameInput.errMsg }]"
             />
-            <label for="idInput">學號</label>
+            <label for="nameInput">姓名</label>
           </span>
         </div>
-        <small id="idErr" class="p-error helpertext">{{ idInput.errMsg }}</small>
+        <small id="nameErr" class="p-error helpertext">{{ nameInput.errMsg }}</small>
+        <div>
+          <span class="p-float-label p-input-icon-left inputspan">
+            <i class="pi pi-id-card" />
+            <InputText 
+              id="stuidInput" 
+              type="text" 
+              v-model="stuidInput.stuid" 
+              @change="stuidCheck"
+              aria-describedby="stuidErr"
+              :class="['p-inputtext-lg input', { 'p-invalid': stuidInput.errMsg }]"
+            />
+            <label for="stuidInput">學號</label>
+          </span>
+        </div>
+        <small id="stuidErr" class="p-error helpertext">{{ stuidInput.errMsg }}</small>
         <div>
           <span class="p-float-label p-input-icon-left inputspan">
             <i class="pi pi-book" />
@@ -33,21 +48,6 @@
           </span>
         </div>
         <small id="depErr" class="p-error helpertext">{{ depGradeInput.errMsg }}</small>
-        <div>
-          <span class="p-float-label p-input-icon-left inputspan">
-            <i class="pi pi-user" />
-            <InputText 
-              id="nameInput" 
-              type="text" 
-              v-model="nameInput.name" 
-              @change="nameCheck"
-              aria-describedby="nameErr"
-              :class="['p-inputtext-lg input', { 'p-invalid': nameInput.errMsg }]"
-            />
-            <label for="nameInput">姓名</label>
-          </span>
-        </div>
-        <small id="nameErr" class="p-error helpertext">{{ nameInput.errMsg }}</small>
         <Button 
           id="submitbtn"
           class="btn"
@@ -66,16 +66,16 @@ export default {
   name: 'Login',
   data () {
     return {
-      idInput: {
-        id: '',
+      nameInput: {
+        name: '',
+        errMsg: '',
+      },
+      stuidInput: {
+        stuid: '',
         errMsg: '',
       },
       depGradeInput: {
         depGrade: '',
-        errMsg: '',
-      },
-      nameInput: {
-        name: '',
         errMsg: '',
       },
       user,
@@ -83,33 +83,33 @@ export default {
     };
   },
   methods: {
-    idCheck () {
+    nameCheck () {
+      this.nameInput.errMsg = this.nameInput.name === '' ? '請填寫此欄位' : '';
+    },
+    stuidCheck () {
       console.log('checking')
-      this.idInput.errMsg = this.idInput.id === '' ? '請填寫此欄位' : '';
+      this.stuidInput.errMsg = this.stuidInput.stuid === '' ? '請填寫此欄位' : '';
     },
     depGradeCheck () {
       this.depGradeInput.errMsg = this.depGradeInput.depGrade === '' ? '請填寫此欄位' : '';
     },
-    nameCheck () {
-      this.nameInput.errMsg = this.nameInput.name === '' ? '請填寫此欄位' : '';
-    },
     handleSubmit () {
-      if (!this.idInput.id
-        || !this.depGradeInput.depGrade
-        || !this.nameInput.name) {
-        if (!this.idInput.id) this.idInput.errMsg = '請填寫此欄位';
+      if (!this.nameInput.name
+        || !this.stuidInput.stuid
+        || !this.depGradeInput.depGrade) {
+          if (!this.nameInput.name) this.nameInput.errMsg = '請填寫此欄位';
+        if (!this.stuidInput.stuid) this.stuidInput.errMsg = '請填寫此欄位';
         if (!this.depGradeInput.depGrade) this.depGradeInput.errMsg = '請填寫此欄位';
-        if (!this.nameInput.name) this.nameInput.errMsg = '請填寫此欄位';
         return;
       }
-      this.idInput.errMsg = '';
+      this.stuidInput.errMsg = '';
       this.depGradeInput.errMsg = '';
       this.nameInput.errMsg = '';
 
       setUser({ 
-        id: this.idInput.id,
-        depGrade: this.depGradeInput.depGrade,
         name: this.nameInput.name,
+        stuid: this.stuidInput.stuid,
+        depGrade: this.depGradeInput.depGrade,
       });
       this.$router.push('/questions');
     },
@@ -122,7 +122,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background-color: cornflowerblue;
+  background-color: #c7c5b8;
   padding-block: 50px;
   overflow: auto;
 }
@@ -135,7 +135,7 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: white;
+  background-color: aliceblue;
   box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, .3);
   border-radius: 20px;
   padding: 20px;
@@ -155,14 +155,14 @@ export default {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background-color: cadetblue;
+  background-color: #fd9735;
   border-radius: 20px;
   padding: 20px;
 }
 .input {
   width: 95%;
   background-color: rgb(255, 255, 255, 0.5);
-  /* border-width: 0px; */
+  border-width:1px;
 }
 .inputspan {
   margin-top: 30px;
@@ -175,13 +175,13 @@ export default {
 }
 .btn {
   width: 200px;
-  color: inherit;
   border-width: 0px;
   font-size: inherit;
   font-style: inherit;
   margin-top: 20px;
+  background-color: rgba(255, 103, 69);
 }
 .btn:hover {
-  background-color: var(--teal-700);
+  background-color: rgba(255, 63, 29);
 }
 </style>
