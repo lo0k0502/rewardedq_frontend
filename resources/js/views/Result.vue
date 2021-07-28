@@ -1,22 +1,24 @@
 <template>
   <Toolbar class="navbar">
     <template #left>
-      <h2>Result</h2>
-    </template>
-    <template #right>
-        <h4 class="profile">姓名: {{ user.name }}</h4>
-        <h4 class="profile">學號: {{ user.stuid }}</h4>
-        <h4 class="profile">系級: {{ user.depGrade }}</h4>
+      <h2 style="margin: 0px; margin-top: -5px">結果</h2>
     </template>
   </Toolbar>
   <div class="root">
     <Card class="card">
     <template #title>
-        <h4 class="title">{{ user.grade }}</h4>
+        <h2 class="title">您的成績是: {{ user.grade }}</h2>
     </template>
     <template #content>
+      <div class="knobcontent">
+        <Knob 
+          :modelValue="user.grade" 
+          :size="200"
+        />
+      </div>
     </template>
     <template #footer>
+      <h2 class="title">{{ user.grade >= 85 ? '恭喜!您獲得了抽獎資格!' : '抱歉，您沒有獲得抽獎資格...' }}</h2>
     </template>
     </Card>
   </div>
@@ -36,23 +38,16 @@ export default {
 </script>
 
 <style>
-h2 {
-  margin: 0px;
-}
 .navbar {
-  height: 60px;
+  height: 80px;
   color: white;
   background-color: #38618f;
   border-radius: 0px;
   border-width: 0px;
   margin: -8px;
 }
-.profile {
-  margin: 0px;
-  margin-left: 1em;
-}
 .root {
-  height: calc(100vh - 52px);
+  height: calc(100vh - 72px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,7 +60,7 @@ h2 {
 .card {
   width: 600px;
   min-width: 300px;
-  height: 450px;
+  height: 500px;
   color: white;
   background-color: #fd9735;
   border-radius: 20px;
@@ -78,9 +73,10 @@ h2 {
   }
 }
 .title {
-  height: 130px;
+  text-align: center;
+}
+.knobcontent {
   display: flex;
-  flex-direction: column;
   justify-content: center;
 }
 </style>

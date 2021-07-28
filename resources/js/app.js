@@ -17,6 +17,7 @@ import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
 import Paginator from 'primevue/paginator';
 import Dialog from 'primevue/dialog';
+import Knob from 'primevue/knob';
 import './styles';
 
 export const [user, setUser] = useState({
@@ -41,4 +42,5 @@ createApp(App)
     .component('Toast', Toast)
     .component('Paginator', Paginator)
     .component('Dialog', Dialog)
+    .component('Knob', Knob)
     .mount('#app');
