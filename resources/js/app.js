@@ -16,6 +16,7 @@ import InlineMessage from 'primevue/inlinemessage';
 import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
 import Paginator from 'primevue/paginator';
+import Dialog from 'primevue/dialog';
 import './styles';
 
 export const [user, setUser] = useState({
@@ -38,4 +39,5 @@ createApp(App)
     .component('InlineMessage', InlineMessage)
     .component('Toast', Toast)
     .component('Paginator', Paginator)
+    .component('Dialog', Dialog)
     .mount('#app');

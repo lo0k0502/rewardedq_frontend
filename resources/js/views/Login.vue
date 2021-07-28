@@ -64,7 +64,7 @@ import { user, setUser } from '../app';
 
 export default {
   name: 'Login',
-  data () {
+  data() {
     return {
       nameInput: {
         name: '',
@@ -83,17 +83,17 @@ export default {
     };
   },
   methods: {
-    nameCheck () {
+    nameCheck() {
       this.nameInput.errMsg = this.nameInput.name === '' ? '請填寫此欄位' : '';
     },
-    stuidCheck () {
+    stuidCheck() {
       console.log('checking')
       this.stuidInput.errMsg = this.stuidInput.stuid === '' ? '請填寫此欄位' : '';
     },
-    depGradeCheck () {
+    depGradeCheck() {
       this.depGradeInput.errMsg = this.depGradeInput.depGrade === '' ? '請填寫此欄位' : '';
     },
-    handleSubmit () {
+    handleSubmit() {
       if (!this.nameInput.name
         || !this.stuidInput.stuid
         || !this.depGradeInput.depGrade) {
