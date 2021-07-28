@@ -87,7 +87,6 @@ export default {
       this.nameInput.errMsg = this.nameInput.name === '' ? '請填寫此欄位' : '';
     },
     stuidCheck() {
-      console.log('checking')
       this.stuidInput.errMsg = this.stuidInput.stuid === '' ? '請填寫此欄位' : '';
     },
     depGradeCheck() {
@@ -110,6 +109,7 @@ export default {
         name: this.nameInput.name,
         stuid: this.stuidInput.stuid,
         depGrade: this.depGradeInput.depGrade,
+        grade: 0,
       });
       this.$router.push('/questions');
     },

@@ -14,6 +14,11 @@ const routes = [
     component: () => import('../views/Questions'),
   },
   {
+    path: '/result',
+    name: 'Result',
+    component: () => import('../views/Result'),
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'NOTFOUND',
     component: () => import('../views/NOTFOUND'),
@@ -26,9 +31,11 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (!((from.name === 'Login' && to.name === 'Questions') || (from.name === 'Questions' && to.name === 'Login'))) 
+  if (!((from.name === 'Login' && to.name === 'Questions') 
+    || (from.name === 'Questions' && to.name === 'Login') 
+    || (from.name === 'Questions' && to.name === 'Result'))) 
     setUser({ name: '', stuid: '', depGrade: '' });
-  (to.name === 'Questions' && !user.value.name) ? next('/login') : next();
+  ((to.name === 'Questions' || to.name === 'Result') && !user.value.name) ? next('/login') : next();
   if (to.path === '/') next('/login');
 });
 

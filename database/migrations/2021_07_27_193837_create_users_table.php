@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('stuid');
             $table->string('depGrade');
+            $table->integer('grade');
             $table->timestamps();
         });
     }

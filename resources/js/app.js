@@ -23,6 +23,7 @@ export const [user, setUser] = useState({
     name: '',
     stuid: '',
     depGrade: '',
+    grade: 0,
 });
 
 createApp(App)
