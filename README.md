@@ -1,18 +1,19 @@
-# RewardedQ
-## File Changes
-.env.example --> .env
+# rewardedq_frontend
 
-## Open Server
+## Project setup
 ```
-cd RewardedQ
-
-//Init
 yarn install
-composer install
-
-//Open server
-yarn start
-
-//Open watcher
-yarn hot
 ```
+
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
