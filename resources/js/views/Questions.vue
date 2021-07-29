@@ -24,6 +24,7 @@
                   :value="option[0]" 
                   v-model="questions[curQues].choice" 
                   class="option"
+                  @change="check"
                 />
                 <label :for="option[0]">{{ option }}</label>
             </div>
@@ -116,6 +117,11 @@ export default {
   methods: {
     onPageChange(event) {
       this.curQues = event.page;
+    },
+    check() {
+      this.$toast.add((this.questions[this.curQues].choice === this.questions[this.curQues].answer) ? 
+        {severity:'success', summary: '正確答案!', life: 1000} : 
+        {severity:'error', summary: '答案錯誤!', life: 1000} );
     },
     handleSubmitBtnClick() {
       for (let i = 0; i < this.questions.length; i++) {
