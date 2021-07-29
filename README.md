@@ -1,4 +1,8 @@
 # RewardedQ
+## File Changes
+.env.example --> .env
+
+## Open Server
 ```
 cd RewardedQ
 
