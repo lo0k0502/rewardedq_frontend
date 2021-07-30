@@ -87,7 +87,9 @@ export default {
       this.nameInput.errMsg = this.nameInput.name === '' ? '請填寫此欄位' : '';
     },
     stuidCheck() {
-      this.stuidInput.errMsg = this.stuidInput.stuid === '' ? '請填寫此欄位' : '';
+      if (this.stuidInput.stuid === '') this.stuidInput.errMsg = '請填寫此欄位';
+      else if (this.stuidInput.stuid.length !== 10) this.stuidInput.errMsg = '學號必須為十位數字';
+      else this.stuidInput.errMsg = '';
     },
     depGradeCheck() {
       this.depGradeInput.errMsg = this.depGradeInput.depGrade === '' ? '請填寫此欄位' : '';
