@@ -63,7 +63,6 @@
           <Button label="是" icon="pi pi-check" @click="handleSubmit" />
         </template>
       </Dialog>
-      {{ window.width }}
     </div>
   </div>
 </template>
