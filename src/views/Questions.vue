@@ -239,6 +239,10 @@ h2 {
 .option {
   margin-inline: 10px;
 }
+.footer {
+  display: flex;
+  justify-content: center;
+}
 .paginator {
   background-color: rgba(255, 255, 255, 0.3);
   border-width: 0px;
