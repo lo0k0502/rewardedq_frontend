@@ -246,6 +246,7 @@ h2 {
 }
 .paginator {
   width: 250px;
+  display: flex;
   background-color: rgba(255, 255, 255, 0.3);
   border-width: 0px;
   border-radius: 30px;
