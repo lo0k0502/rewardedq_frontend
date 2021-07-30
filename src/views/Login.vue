@@ -97,11 +97,11 @@ export default {
     handleSubmit() {
       if (!this.nameInput.name
         || !this.stuidInput.stuid
-        || !this.stuidInput.stuid.match(/^\d\d\d\d\d\d\d\d\d\d$/)
+        || !this.stuidInput.stuid.match(/^\d\d\d\d\d\d\d\d\d$/)
         || !this.depGradeInput.depGrade) {
         if (!this.nameInput.name) this.nameInput.errMsg = '請填寫此欄位';
         if (!this.stuidInput.stuid) this.stuidInput.errMsg = '請填寫此欄位';
-        else if (!this.stuidInput.stuid.match(/^\d\d\d\d\d\d\d\d\d\d$/)) this.stuidInput.errMsg = '學號必須為十位數字';
+        else if (!this.stuidInput.stuid.match(/^\d\d\d\d\d\d\d\d\d$/)) this.stuidInput.errMsg = '學號必須為九位數字';
         if (!this.depGradeInput.depGrade) this.depGradeInput.errMsg = '請填寫此欄位';
         return;
       }

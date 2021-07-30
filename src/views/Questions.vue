@@ -149,7 +149,7 @@ export default {
           depGrade: this.user.depGrade,
           grade,
         });
-        // await storeUser({ user: this.user });
+        await storeUser({ user: this.user });
 
         this.$router.push('/result');
       } catch (error) {
