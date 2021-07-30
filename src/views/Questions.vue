@@ -149,7 +149,7 @@ export default {
           depGrade: this.user.depGrade,
           grade,
         });
-        await storeUser({ user: this.user });
+        // await storeUser({ user: this.user });
 
         this.$router.push('/result');
       } catch (error) {
@@ -197,7 +197,7 @@ h2 {
 }
 .card {
   max-width: 600px;
-  min-width: 300px;
+  min-width: 500px;
   height: 480px;
   color: white;
   background-color: #fd9735;
@@ -218,6 +218,9 @@ h2 {
   justify-content: center;
 }
 @media (max-width: 500px) {
+  .card {
+    min-width: 300px;
+  }
   .title {
     font-size: 20px;
   }

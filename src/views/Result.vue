@@ -74,6 +74,7 @@ export default {
 }
 .title {
   text-align: center;
+  margin: 0px;
 }
 .knobcontent {
   display: flex;
