@@ -35,7 +35,7 @@
             <Paginator
               rows="1"
               :totalRecords="questions.length"
-              :template="'FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink'"
+              :template="'PrevPageLink CurrentPageReport NextPageLink'"
               @page="onPageChange($event)"
               class="paginator"
             />
