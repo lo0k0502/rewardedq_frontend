@@ -4,14 +4,13 @@
       <h2>交安試題2</h2>
     </template>
   </Toolbar>
-  <Toast position="bottom-left" />
   <div class="root">
     <div class="container">
       <Card class="card">
         <template #title>
           <h4 class="title"><i class="pi pi-question-circle titleicon" />{{ questions[curQues].question }}</h4>
         </template>
-        <template #content>
+        <template #subtitle>
           <div class="radbtns">
             <div 
               v-for="option of questions[curQues].choices" 
@@ -30,7 +29,7 @@
             </div>
           </div>
         </template>
-        <template #footer>
+        <template #content>
           <div class="footer">
             <Paginator
               rows="1"
@@ -39,6 +38,11 @@
               @page="onPageChange($event)"
               class="paginator"
             />
+          </div>
+        </template>
+        <template #footer>
+          <div class="footer">
+            <InlineMessage severity="error" :style="{ visibility: errMsg ? 'visible' : 'hidden' }">{{ errMsg }}</InlineMessage>
           </div>
         </template>
       </Card>
@@ -111,7 +115,8 @@ export default {
       window: {
           width: 0,
           height: 0
-      }
+      },
+      errMsg: '',
     };
   },
   methods: {
@@ -119,9 +124,7 @@ export default {
       this.curQues = event.page;
     },
     check() {
-      this.$toast.add((this.questions[this.curQues].choice === this.questions[this.curQues].answer) ? 
-        {severity:'success', summary: '正確答案!', life: 1000} : 
-        {severity:'error', summary: '答案錯誤!', life: 1000} );
+      this.errMsg = (this.questions[this.curQues].choice !== this.questions[this.curQues].answer) ? '答案錯誤!' : '';
     },
     handleSubmitBtnClick() {
       for (let i = 0; i < this.questions.length; i++) {
@@ -194,7 +197,7 @@ h2 {
 .card {
   max-width: 600px;
   min-width: 300px;
-  height: 450px;
+  height: 480px;
   color: white;
   background-color: #fd9735;
   border-radius: 20px;
@@ -257,5 +260,15 @@ h2 {
   margin-bottom: 50px;
   margin-top: 20px;
   overflow: auto;
+}
+.p-toast {
+    position: fixed;
+    width: 5rem;
+    background-color: #38618f;
+}
+.p-toast {
+  display: block;
+  flex-direction: column;
+  width: 50px;
 }
 </style>
