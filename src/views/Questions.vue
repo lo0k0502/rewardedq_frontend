@@ -121,6 +121,7 @@ export default {
   },
   methods: {
     onPageChange(event) {
+      this.errMsg = '';
       this.curQues = event.page;
     },
     check() {
