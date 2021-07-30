@@ -240,11 +240,21 @@ h2 {
 .option {
   margin-inline: 10px;
 }
+.footer {
+  display: flex;
+  justify-content: center;
+}
 .paginator {
+  width: 250px;
   background-color: rgba(255, 255, 255, 0.3);
   border-width: 0px;
   border-radius: 30px;
   padding: 0px;
+}
+@media (min-width: 580px) {
+  .paginator {
+    width: auto;
+  }
 }
 .submitbtn {
   width: 200px;
