@@ -35,7 +35,7 @@
             <Paginator
               rows="1"
               :totalRecords="questions.length"
-              :template="window.width >= 580 ? 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink' : 'FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink'"
+              :template="'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink'"
               @page="onPageChange($event)"
               class="paginator"
             />
@@ -245,17 +245,12 @@ h2 {
   justify-content: center;
 }
 .paginator {
-  width: 250px;
   display: flex;
+  justify-content: space-around;
   background-color: rgba(255, 255, 255, 0.3);
   border-width: 0px;
   border-radius: 30px;
   padding: 0px;
-}
-@media (min-width: 580px) {
-  .paginator {
-    width: auto;
-  }
 }
 .submitbtn {
   width: 200px;
