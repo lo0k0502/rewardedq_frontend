@@ -1,7 +1,7 @@
 <template>
   <Toolbar class="navbar">
     <template #left>
-      <h2>交安試題2</h2>
+      <h2>國立中正大學交通安全宣導線上有獎徵答試題</h2>
     </template>
   </Toolbar>
   <div class="root">
@@ -230,6 +230,7 @@ h2 {
   color: white;
   margin: 0px;
 }
+.
 .titleicon {
   font-size: inherit;
 }
@@ -242,6 +243,8 @@ h2 {
   align-items: baseline;
   margin-left: 5%;
   border-width: 20px;
+  color: white;
+  font-size:1.2rem;
 }
 .option {
   margin-inline: 10px;

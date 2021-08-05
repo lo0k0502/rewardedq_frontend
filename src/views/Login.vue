@@ -1,7 +1,7 @@
 <template>
   <div class="root">
     <div class="formcontainer">
-      <h1>交安試題2</h1>
+      <h1>國立中正大學交通安全宣導<br>線上有獎徵答試題</h1>
       <form class="form" @submit.prevent="handleSubmit">
         <div>
           <span class="p-float-label p-input-icon-left inputspan">
@@ -144,8 +144,7 @@ export default {
   border-radius: 20px;
   padding: 20px;
   padding-bottom: 50px;
-  font-size: 20px;
-  font-style: italic;
+  font-size: 15px;
 }
 @media (max-width: 800px) {
   .formcontainer {
