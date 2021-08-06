@@ -1,7 +1,8 @@
 <template>
   <Toolbar class="navbar">
     <template #left>
-      <h2>國立中正大學交通安全宣導線上有獎徵答試題</h2>
+      <h2 v-if="window.width >= 520">國立中正大學交通安全宣導線上有獎徵答試題</h2>
+      <h2 v-else>國立中正大學交通安全宣導<br />線上有獎徵答試題</h2>
     </template>
   </Toolbar>
   <div class="root">
@@ -49,7 +50,7 @@
       <Button 
         id="submitbtn"
         class="submitbtn"
-        :style="{ display: curQues === questions.length - 1 ? 'block' : 'none' }"
+        :style="{ visibility: curQues === questions.length - 1 ? 'visible' : 'hidden' }"
         type="submit" 
         label="提交" 
         @click="handleSubmitBtnClick"
@@ -172,21 +173,20 @@ h2 {
   margin-top: -5px;
 }
 .navbar {
-  height: 80px;
+  position: sticky;
+  height: 100px;
   color: white;
   background-color: #38618f;
   border-radius: 0px;
   border-width: 0px;
-  margin: -8px;
 }
 .root {
-  height: calc(100vh - 72px);
+  height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   padding-top: 50px;
-  margin: -8px;
   background-color: #c7c5b8;
   overflow: auto;
 }
@@ -203,8 +203,8 @@ h2 {
   background-color: #fd9735;
   border-radius: 20px;
   box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, .3);
+  margin-bottom: 30px;
   padding: 0px;
-  margin-bottom: 50px;
 }
 @media (max-width: 800px) {
   .card {
@@ -230,7 +230,6 @@ h2 {
   color: white;
   margin: 0px;
 }
-.
 .titleicon {
   font-size: inherit;
 }
@@ -264,18 +263,6 @@ h2 {
 .submitbtn {
   width: 200px;
   height: 50px;
-  margin-bottom: 50px;
-  margin-top: 20px;
-  overflow: auto;
-}
-.p-toast {
-    position: fixed;
-    width: 5rem;
-    background-color: #38618f;
-}
-.p-toast {
-  display: block;
-  flex-direction: column;
-  width: 50px;
+  margin-bottom: 20px;
 }
 </style>

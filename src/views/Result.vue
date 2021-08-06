@@ -44,16 +44,14 @@ export default {
   background-color: #38618f;
   border-radius: 0px;
   border-width: 0px;
-  margin: -8px;
 }
 .root {
-  height: calc(100vh - 72px);
+  height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   padding-top: 50px;
-  margin: -8px;
   background-color: #c7c5b8;
   overflow: auto;
 }

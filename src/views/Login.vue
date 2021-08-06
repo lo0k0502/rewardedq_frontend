@@ -1,7 +1,15 @@
 <template>
   <div class="root">
     <div class="formcontainer">
-      <h1>國立中正大學交通安全宣導<br>線上有獎徵答試題</h1>
+      <div v-if="window.width >= 560" style="text-align: center;">
+        <h1 style="margin-bottom: 0px;">國立中正大學交通安全宣導</h1>
+        <h1 style="margin-top: 0px;">線上有獎徵答試題</h1>
+      </div>
+      <div v-else style="text-align: center;">
+        <h1 style="margin-bottom: 0px;">國立中正大學</h1>
+        <h1 style="margin-block: 0px;">交通安全宣導</h1>
+        <h1 style="margin-top: 0px;">線上有獎徵答試題</h1>
+      </div>
       <form class="form" @submit.prevent="handleSubmit">
         <div>
           <span class="p-float-label p-input-icon-left inputspan">
@@ -64,6 +72,13 @@ import { user, setUser } from '../main';
 
 export default {
   name: 'Login',
+  created() {
+      window.addEventListener('resize', this.handleResize);
+      this.handleResize();
+  },
+  destroyed() {
+      window.removeEventListener('resize', this.handleResize);
+  },
   data() {
     return {
       nameInput: {
@@ -80,6 +95,10 @@ export default {
       },
       user,
       setUser,
+      window: {
+          width: 0,
+          height: 0
+      },
     };
   },
   methods: {
@@ -117,12 +136,17 @@ export default {
       });
       this.$router.push('/questions');
     },
+    handleResize() {
+        this.window.width = window.innerWidth;
+        this.window.height = window.innerHeight;
+    },
   },
 };
 </script>
 
 <style scoped>
 .root {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
