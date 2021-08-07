@@ -6,69 +6,67 @@
     </template>
   </Toolbar>
   <div class="root">
-    <div class="container">
-      <Card class="card">
-        <template #title>
-          <h4 class="title"><i class="pi pi-question-circle titleicon" />{{ questions[curQues].question }}</h4>
-        </template>
-        <template #subtitle>
-          <div class="radbtns">
-            <div 
-              v-for="option of questions[curQues].choices" 
-              :key="option[0]" 
-              class="p-field-radiobutton"
-            >
-                <RadioButton 
-                  :id="option[0]" 
-                  :name="option[0]"
-                  :value="option[0]" 
-                  v-model="questions[curQues].choice" 
-                  class="option"
-                  @change="check"
-                />
-                <label :for="option[0]">{{ option }}</label>
-            </div>
+    <Card class="card">
+      <template #title>
+        <h4 class="title"><i class="pi pi-question-circle titleicon" />{{ questions[curQues].question }}</h4>
+      </template>
+      <template #subtitle>
+        <div class="radbtns">
+          <div 
+            v-for="option of questions[curQues].choices" 
+            :key="option[0]" 
+            class="p-field-radiobutton"
+          >
+              <RadioButton 
+                :id="option[0]" 
+                :name="option[0]"
+                :value="option[0]" 
+                v-model="questions[curQues].choice" 
+                class="option"
+                @change="check"
+              />
+              <label :for="option[0]">{{ option }}</label>
           </div>
-        </template>
-        <template #content>
-          <div class="footer">
-            <Paginator
-              rows="1"
-              :totalRecords="questions.length"
-              :template="'PrevPageLink CurrentPageReport NextPageLink'"
-              @page="onPageChange($event)"
-              class="paginator"
-            />
-          </div>
-        </template>
-        <template #footer>
-          <div class="footer">
-            <InlineMessage severity="error" :style="{ visibility: errMsg ? 'visible' : 'hidden' }">{{ errMsg }}</InlineMessage>
-          </div>
-        </template>
-      </Card>
-      <Button 
-        id="submitbtn"
-        class="submitbtn"
-        :style="{ visibility: curQues === questions.length - 1 ? 'visible' : 'hidden' }"
-        type="submit" 
-        label="提交" 
-        @click="handleSubmitBtnClick"
-      />
-      <Dialog header="Oops!" v-model:visible="showUnfinishedDialog" modal>
-        您好像還沒填答完所有的題目喔。
-        <template #footer>
-          <Button label="OK" @click="showUnfinishedDialog = false" />
-        </template>
-      </Dialog>
-      <Dialog header="您確定要提交答案了嗎?" v-model:visible="showSubmitDialog" modal>
-        請您務必確認所有的答案正確後再提交。
-        <template #footer>
-          <Button label="否" icon="pi pi-times" @click="showSubmitDialog = false" />
-          <Button label="是" icon="pi pi-check" @click="handleSubmit" />
-        </template>
-      </Dialog>
-    </div>
+        </div>
+      </template>
+      <template #content>
+        <div class="footer">
+          <Paginator
+            rows="1"
+            :totalRecords="questions.length"
+            :template="'PrevPageLink CurrentPageReport NextPageLink'"
+            @page="onPageChange($event)"
+            class="paginator"
+          />
+        </div>
+      </template>
+      <template #footer>
+        <div class="footer">
+          <InlineMessage severity="error" :style="{ visibility: errMsg ? 'visible' : 'hidden' }">{{ errMsg }}</InlineMessage>
+        </div>
+      </template>
+    </Card>
+    <Button 
+      id="submitbtn"
+      class="submitbtn"
+      :style="{ visibility: curQues === questions.length - 1 ? 'visible' : 'hidden' }"
+      type="submit" 
+      label="提交" 
+      @click="handleSubmitBtnClick"
+    />
+    <Dialog header="Oops!" v-model:visible="showUnfinishedDialog" modal>
+      您好像還沒填答完所有的題目喔。
+      <template #footer>
+        <Button label="OK" @click="showUnfinishedDialog = false" />
+      </template>
+    </Dialog>
+    <Dialog header="您確定要提交答案了嗎?" v-model:visible="showSubmitDialog" modal>
+      請您務必確認所有的答案正確後再提交。
+      <template #footer>
+        <Button label="否" icon="pi pi-times" @click="showSubmitDialog = false" />
+        <Button label="是" icon="pi pi-check" @click="handleSubmit" />
+      </template>
+    </Dialog>
   </div>
 </template>
 
@@ -174,35 +172,30 @@ h2 {
 }
 .navbar {
   position: sticky;
-  height: 100px;
+  height: var(--nav-height);
   color: white;
-  background-color: #38618f;
+  background-color: var(--nav-bg);
   border-radius: 0px;
   border-width: 0px;
 }
 .root {
-  height: calc(100vh - 100px);
+  height: calc(100vh - var(--nav-height));
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   padding-top: 50px;
-  background-color: #c7c5b8;
+  background-color: var(--bg);
   overflow: auto;
-}
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 .card {
   max-width: 600px;
   min-width: 500px;
   height: 480px;
   color: white;
-  background-color: #fd9735;
+  background-color: var(--form-bg);
   border-radius: 20px;
-  box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, .3);
+  box-shadow: var(--box-shadow);
   margin-bottom: 30px;
   padding: 0px;
 }

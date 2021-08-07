@@ -37,22 +37,23 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .navbar {
-  height: 80px;
+  position: sticky;
+  height: var(--nav-height);
   color: white;
-  background-color: #38618f;
+  background-color: var(--nav-bg);
   border-radius: 0px;
   border-width: 0px;
 }
 .root {
-  height: calc(100vh - 80px);
+  height: calc(100vh - var(--nav-height));
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   padding-top: 50px;
-  background-color: #c7c5b8;
+  background-color: var(--bg);
   overflow: auto;
 }
 .card {
@@ -60,9 +61,9 @@ export default {
   min-width: 300px;
   height: 500px;
   color: white;
-  background-color: #fd9735;
+  background-color: var(--form-bg);
   border-radius: 20px;
-  box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, .3);
+  box-shadow: var(--box-shadow);
   padding: 0px;
 }
 @media (max-width: 800px) {

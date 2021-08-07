@@ -150,21 +150,21 @@ export default {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background-color: #c7c5b8;
+  background-color: var(--bg);
   padding-block: 50px;
   overflow: auto;
 }
 .formcontainer {
   max-width: 600px;
   min-width: 300px;
-  max-height: 550px;
+  max-height: 600px;
   min-height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   background-color: aliceblue;
-  box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, .3);
+  box-shadow: var(--box-shadow);
   border-radius: 20px;
   padding: 20px;
   padding-bottom: 50px;
@@ -182,7 +182,7 @@ export default {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background-color: #fd9735;
+  background-color: var(--form-bg);
   border-radius: 20px;
   padding: 20px;
 }
@@ -207,8 +207,10 @@ export default {
   font-style: inherit;
   margin-top: 20px;
   background-color: rgba(255, 103, 69);
+  transition: filter var(--speed) ease;
 }
 .btn:hover {
-  background-color: rgba(255, 63, 29);
+  background-color: rgba(255, 103, 69);
+  filter: brightness(1.1);
 }
 </style>
