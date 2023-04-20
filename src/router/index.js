@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { user, setUser } from '../main';
 
 const router = createRouter({
-  history: createWebHistory('/rewardedq/'),
+  history: createWebHistory(process.env.ENVIRONMENT === 'production' ? '/rewardedq/' : '/'),
   routes: [
     { path: '/', redirect: '/login', },
     {
